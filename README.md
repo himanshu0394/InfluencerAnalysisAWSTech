@@ -20,6 +20,9 @@ Our project aims to:
 
 ## Architecture details
 
+An iterative process flow to continually stream, process and generate insights has been implemented to gain information at the earliest:
+![Methodology](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/process.PNG)
+
 The project pipeline consists of four main components. An amazon EMR instance is used to run the streaming script constantly while the data is sent to S3 using Amazon Kinesis Firehose. The data is batch processed and moved to Amazon RDS database using Spark and this dataset is further used to calculate influencer metric and build insightful visualizations in Tableau. Below is the detailed description of each of the component in the pipeline from streaming live data from twitter till storage and visualization.
 
 ![Project Architecture](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Arch2.PNG)
