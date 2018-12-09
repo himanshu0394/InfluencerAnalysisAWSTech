@@ -41,12 +41,13 @@ Below are the details of key code components and their utility:
 5. run_analysis_updated: This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is ten appended to a table in RDS with specified paramteres.
 
 ## References
-https://nycdatascience.com/blog/student-works/web-scraping/build-near-real-time-twitter-streaming-analytical-pipeline-scratch-using-spark-aws/
-https://nycdatascience.com/blog/student-works/creating-real-time-streaming-platform-identify-top-influencers-twitter/
-https://github.com/casunlight/fusion_capstone_project
-https://docs.aws.amazon.com/kinesis/index.html#lang/en_us
-https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
-https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object.html
-https://docs.aws.amazon.com/cli/index.html#lang/en_us
+1. https://nycdatascience.com/blog/student-works/web-scraping/build-near-real-time-twitter-streaming-analytical-pipeline-scratch-using-spark-aws/
+2. https://nycdatascience.com/blog/student-works/creating-real-time-streaming-platform-identify-top-influencers-twitter/
+3. https://github.com/casunlight/fusion_capstone_project
+4. https://docs.aws.amazon.com/kinesis/index.html#lang/en_us
+5. https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+6. https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object.html
+7. https://docs.aws.amazon.com/cli/index.html#lang/en_us
+
 
 **********************************************************************************************************************************
