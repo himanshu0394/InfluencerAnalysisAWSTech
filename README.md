@@ -22,6 +22,11 @@ The project pipeline consists of four main components. An amazon EMR instance is
 4. Database: The final output from our analysis in Spark was sent to Amazon RDS as a SQL table and updated every 15 minutes as mentioned earlier. The Python Flask App called the database to display the real time data to the client interface.
 
 ## Code walkthrough
-
+Below are the details of key code components in sequence and their utility:
+1. create_aws_pipeline:
+2. data_producer:
+3. delete_kinesis_pipeline:
+4. download_unzip_mysql_driver:
+5. run_analysis_updated:
 
 ## Conclusion
