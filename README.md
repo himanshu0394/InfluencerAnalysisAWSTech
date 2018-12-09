@@ -3,7 +3,7 @@ Future of marketing : Identifying real time social media influencers using AWS K
 
 ## Project overview and objective
 __Understanding__ what twitter users are talking about is an important component of a marketing campaign. The sentiment tracking and word cloud functions allow marketing manager to know how audiences feel and what are the frequently mentioned words. If the average sentiment score drops significantly, it means that a potential public relationship crisis might be happening.
-
+![Project Objective](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Obj.PNG)
 
 ## Architecture details
 
