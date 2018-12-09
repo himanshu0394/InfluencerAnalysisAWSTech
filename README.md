@@ -1,14 +1,22 @@
-# trends-project-team2
 # Future of marketing : Identifying real time social media influencers using AWS Kinesis, Spark and Amazon RDS
+### Trends Marketplace Fall MSBA'19 - Team 2
 
 ## Project overview and objective
-__Understanding__ what twitter users are talking about is an important component of a marketing campaign. The sentiment tracking and word cloud functions allow marketing manager to know how audiences feel and what are the frequently mentioned words. If the average sentiment score drops significantly, it means that a potential public relationship crisis might be happening.
-1. Retweets
-2. Favourites
-3. Followers
-4. Depth
+Due to social media outreach, identifying and leveraging social media influencers for business development has become crucial aspect of developing a successful marketing strategy for organisations. Below are some of the facts why influencer reach is of high importance:
 
-![Project Objective](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Obj.PNG)
+![Influencer Importance](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Inf.PNG)
+
+One of such popular social media platforms is twitter and various factors define how an influencer can be spotted:
+1. Retweets: The number of retweets a person's tweet gets
+2. Favourites: Number of accounts that have account under consideration as their favourite
+3. Followers: Number of followers a person has
+4. Depth: If a tweet is retweeted by another influencer then it is likeliy that the followers of that influencer will retweet the tweet. Hence it creates a second branch of retweets for the maub influencer which can create further layers of retweets. Depth signifies how farther is the reach of such non-primary retweets.
+
+Our project aims to:
+1. Understand what twitter users are talking about 
+2. Important component of a marketing campaign
+3. Identify influencer networks, leverage them for marketing
+4. Optimize budget allocation in real-time using influencer efficiency, geographic penetration, etc.
 
 ## Architecture details
 
@@ -23,10 +31,10 @@ The project pipeline consists of four main components. An amazon EMR instance is
 
 ## Code walkthrough
 Below are the details of key code components in sequence and their utility:
-1. create_aws_pipeline:
-2. data_producer:
-3. delete_kinesis_pipeline:
-4. download_unzip_mysql_driver:
-5. run_analysis_updated:
+1. create_aws_pipeline: This code creates the pipeline used to stream data and store it in S3. The data is captured every 300 seconds or once the data reaches 5MB size limit, whichever reaches first.
+2. data_producer: This is the main streaming component of the pipeline. The function on_data of class StreamListener specifies all the components from twitter data that will be streamed and stored on S3.
+3. delete_kinesis_pipeline: This snippet drops the kinesis pipeline used to stream data from twitter to S3
+4. download_unzip_mysql_driver: This shell script downloads and unzips the required MySQL driver.
+5. run_analysis_updated: This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is ten appended to a table in RDS with specified paramteres.
 
 ## Conclusion
