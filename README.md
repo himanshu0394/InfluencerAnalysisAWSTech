@@ -34,11 +34,17 @@ The project pipeline consists of four main components. An amazon EMR instance is
 
 ## Code walkthrough
 Below are the details of key code components and their utility:
-1. create_aws_pipeline: This code creates the pipeline used to stream data and store it in S3. The data is captured every 300 seconds or once the data reaches 5MB size limit, whichever reaches first.
-2. data_producer: This is the main streaming component of the pipeline. The function on_data of class StreamListener specifies all the components from twitter data that will be streamed and stored on S3.
-3. delete_kinesis_pipeline: This snippet drops the kinesis pipeline used to stream data from twitter to S3
-4. download_unzip_mysql_driver: This shell script downloads and unzips the required MySQL driver.
-5. run_analysis_updated: This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is ten appended to a table in RDS with specified paramteres.
+1. **create_aws_pipeline:** This code creates the pipeline used to stream data and store it in S3. The data is captured every 300 seconds or once the data reaches 5MB size limit, whichever reaches first.
+2. **data_producer:** This is the main streaming component of the pipeline. The function on_data of class StreamListener specifies all the components from twitter data that will be streamed and stored on S3.
+3. **delete_kinesis_pipeline:** This snippet drops the kinesis pipeline used to stream data from twitter to S3
+4. **download_unzip_mysql_driver:** This shell script downloads and unzips the required MySQL driver.
+5. **run_analysis_updated:** This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is ten appended to a table in RDS with specified paramteres.
+6. **Execute code:** Run the below command to execute run analysis code. We can aslo schedule the code in a crontab file and run every hour or every day depending on our needs
+
+```
+spark-submit --jars ~/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar run_analysis_updated.py
+```
+
 
 ## References
 1. https://nycdatascience.com/blog/student-works/web-scraping/build-near-real-time-twitter-streaming-analytical-pipeline-scratch-using-spark-aws/
