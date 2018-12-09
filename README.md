@@ -7,6 +7,7 @@ __Understanding__ what twitter users are talking about is an important component
 2. Favourites
 3. Followers
 4. Depth
+
 ![Project Objective](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Obj.PNG)
 
 ## Architecture details
