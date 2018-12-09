@@ -1,4 +1,4 @@
-# Future of marketing : Identifying real time social media influencers using AWS Kinesis, Spark and Amazon RDS
+# The future of marketing: Beat the competition with realtime analytics using AWS Kinesis, Spark and Amazon RDS
 ### Trends Marketplace Fall MSBA'19 - Team 2
 
 ## Project overview and objective
