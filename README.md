@@ -40,4 +40,3 @@ Below are the details of key code components in sequence and their utility:
 4. download_unzip_mysql_driver: This shell script downloads and unzips the required MySQL driver.
 5. run_analysis_updated: This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is ten appended to a table in RDS with specified paramteres.
 
-## Conclusion
