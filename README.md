@@ -33,7 +33,7 @@ The project pipeline consists of four main components. An amazon EMR instance is
 4. Database: The final output from our analysis in Spark was sent to Amazon RDS as a SQL table and updated every 15 minutes as mentioned earlier. The Python Flask App called the database to display the real time data to the client interface.
 
 ## Code walkthrough
-Below are the details of key code components in sequence and their utility:
+Below are the details of key code components and their utility:
 1. create_aws_pipeline: This code creates the pipeline used to stream data and store it in S3. The data is captured every 300 seconds or once the data reaches 5MB size limit, whichever reaches first.
 2. data_producer: This is the main streaming component of the pipeline. The function on_data of class StreamListener specifies all the components from twitter data that will be streamed and stored on S3.
 3. delete_kinesis_pipeline: This snippet drops the kinesis pipeline used to stream data from twitter to S3
