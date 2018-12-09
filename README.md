@@ -3,6 +3,10 @@
 
 ## Project overview and objective
 __Understanding__ what twitter users are talking about is an important component of a marketing campaign. The sentiment tracking and word cloud functions allow marketing manager to know how audiences feel and what are the frequently mentioned words. If the average sentiment score drops significantly, it means that a potential public relationship crisis might be happening.
+1. Retweets
+2. Favourites
+3. Followers
+4. Depth
 ![Project Objective](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Obj.PNG)
 
 ## Architecture details
@@ -17,4 +21,6 @@ The project pipeline consists of four main components. An amazon EMR instance is
 4. Database: The final output from our analysis in Spark was sent to Amazon RDS as a SQL table and updated every 15 minutes as mentioned earlier. The Python Flask App called the database to display the real time data to the client interface.
 
 ## Code walkthrough
+
+
 ## Conclusion
