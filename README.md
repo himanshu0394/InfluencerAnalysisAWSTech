@@ -7,6 +7,8 @@ __Understanding__ what twitter users are talking about is an important component
 
 ## Architecture details
 
+The project pipeline consists of four main components. An amazon EMR instance is used to run the streaming script constantly while the data is sent to S3 using Amazon Kinesis Firehose. The data is batch processed and moved to Amazon RDS database using Spark and this dataset is further used to calculate influencer metric and build insightful visualizations in Tableau. Below is the detailed description of each of the component in the pipeline from streaming live data from twitter till storage and visualization.
+
 ![Project Architecture](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Arch2.PNG)
 
 1. Streaming Data Source: The data collection began by implementing the streaming Twitter API using Python. We also implemented the Google NLP API to understand and analyze the sentiment of the data being scraped. The script constantly ran on the cloud on an Amazon EMR instance.
