@@ -7,14 +7,11 @@ from botocore.exceptions import ClientError
 aws_key_id = "AKIAJXYU3CZFP6Q2REEA"
 aws_key = "73MZpReD7KGqVlZu8SuNv9kPJdfos7KPBrAohMis"
 
-#aws_key_id = credentials.aws['key_id']
-#aws_key    = credentials.aws['key']
-
 def create_stream(client, stream_name):
     return client.create_delivery_stream(DeliveryStreamName=stream_name ,S3DestinationConfiguration={'RoleARN': 'arn:aws:iam::406659499942:role/firehose_delivery_role','BucketARN': 'arn:aws:s3:::trends-project-team2','Prefix': stream_name+'/'})
 
-def main():
-#    stream_name = search_name[0]
+def main(search_name):
+    stream_name = search_name[0]
     stream_name = "trump"
     client = boto3.client('firehose', region_name='us-east-2', aws_access_key_id=aws_key_id,aws_secret_access_key=aws_key)
 
@@ -30,4 +27,4 @@ def main():
         print "\n ==== KINESES ONLINE ===="
  
 if __name__ == '__main__':
-    main()
+    main(sys.arg[1:])
