@@ -12,7 +12,6 @@ def create_stream(client, stream_name):
 
 def main(search_name):
     stream_name = search_name[0]
-    stream_name = "trump"
     client = boto3.client('firehose', region_name='us-east-2', aws_access_key_id=aws_key_id,aws_secret_access_key=aws_key)
 
     try:
