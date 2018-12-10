@@ -32,7 +32,7 @@ def main():
     sc=SparkContext()
     sqlContext = SQLContext(sc)
     bucket = "trends-project-team2"
-    prefix = "2018/12/09/19/" #These parameters need to be changed dynamically depending on date and time. Use crontab to autocreate these values
+    prefix = "2018/12/10/03/*/" #These parameters need to be changed dynamically depending on date and time. Use crontab to autocreate these values
     filename = "s3a://{}/photooftheday/{}".format(bucket, prefix)
     print(filename)
 
@@ -40,7 +40,7 @@ def main():
 
 
     data_rm_na = rdd.filter(rdd["status_id"]!='None')
-    features_of_interest = ('rt_status_user_followers_count','rt_status_user_friends_count','rt_status_user_statuses_count','rt_status_retweet_count','rt_status_user_listed_count','rt_status_user_id','rt_status_created_at','status_created_at','rt_status_user_name','rt_status_user_favourites_count','status_id', 'rt_status_text', 'rt_status_user_location')
+    features_of_interest = ('rt_status_user_followers_count','rt_status_user_friends_count','rt_status_user_statuses_count','rt_status_retweet_count','rt_status_user_listed_count','rt_status_user_id','rt_status_created_at','status_created_at','rt_status_user_name','rt_status_user_favourites_count','status_id', 'rt_status_text', 'rt_status_user_location', 'sentiment')
     df_reduce= data_rm_na.select(*features_of_interest)
     df_reduce = df_reduce.withColumn("rt_status_user_followers_count", df_reduce.rt_status_user_followers_count.cast(IntegerType()))
     df_reduce = df_reduce.withColumn("rt_status_user_friends_count", df_reduce.rt_status_user_friends_count.cast(IntegerType()))
@@ -48,12 +48,11 @@ def main():
     df_reduce = df_reduce.withColumn("rt_status_retweet_count", df_reduce.rt_status_retweet_count.cast(IntegerType()))
     df_reduce = df_reduce.withColumn("rt_status_user_listed_count", df_reduce.rt_status_user_listed_count.cast(IntegerType()))
     df_reduce = df_reduce.withColumn("rt_status_user_favourites_count", df_reduce.rt_status_user_favourites_count.cast(IntegerType()))
-    
-#    df_reduce = df_reduce.withColumn("rt_status_num_user_mentions", df_reduce["rt_status_num_user_mentions"].cast(IntegerType()))
+    df_reduce = df_reduce.withColumn("sentiment", df_reduce["sentiment"].cast(IntegerType()))
 
 
     url_ = "jdbc:mysql://trends2018.cfpjuvl8yy9t.us-east-2.rds.amazonaws.com:3306/innodb"
-    table_name_ = "trends123"
+    table_name_ = "trends1234"
     mode_ = "append"
 
     df_reduce.write.format("jdbc").option("url", url_)\

@@ -12,6 +12,7 @@ import uuid
 import credentials
 import sys
 from textblob import TextBlob
+import re
 #from oauth2client.client import GoogleCredentials
 #google_credentials = GoogleCredentials.get_application_default()
 
@@ -34,11 +35,11 @@ def sentimentAnalysis(tweet):
     #client = language.Client()
     analysis= TextBlob(clean_tweet(tweet))
     if analysis.sentiment.polarity > 0:
-        return 'positive'
-    if analysis.sentiment.ploarity ==0:
-        return 'neutral'
+        return 1
+    if analysis.sentiment.polarity ==0:
+        return 0
     else:
-        return 'negative'
+        return -1
 
     #document =  client.document_from_text(text)
     #sent_analysis = document.analyze_sentiment()
@@ -87,10 +88,10 @@ class StreamListener(tweepy.StreamListener):
                 tw_data['rt_status_user_statuses_count']= str(all_data['retweeted_status']['user']['statuses_count'])
                 tw_data['searched_names'] =  self.search_list[0]
                 #try:
-                #    rt_sentiment = sentimentAnalysis(tw_data['rt_status_text'])
-                #    tw_data['rt_status_sentScore']= rt_sentiment.score
+                rt_sentiment = sentimentAnalysis(tw_data['rt_status_text'])
+                tw_data['sentiment']= rt_sentiment
                 #except:
-                #    tw_data['rt_status_sentScore'] = 'None'
+                #    tw_data['sentiment'] = 'None'
 
                 try:
                     self.kinesis.put_record(DeliveryStreamName=self.search_list[0],
