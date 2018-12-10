@@ -8,9 +8,6 @@ from botocore.exceptions import ClientError
 aws_key_id = "AKIAJXYU3CZFP6Q2REEA"
 aws_key = "73MZpReD7KGqVlZu8SuNv9kPJdfos7KPBrAohMis"
 
-#aws_key_id = credentials.aws['key_id']
-#aws_key    = credentials.aws['key']
-
 def delete_stream(client, stream_name):
    try:
         return client.delete_delivery_stream(DeliveryStreamName=stream_name)
