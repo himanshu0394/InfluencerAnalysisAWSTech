@@ -27,23 +27,29 @@ The project pipeline consists of four main components. An amazon EMR instance is
 
 ![Project Architecture](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/Arch2.PNG)
 
-1. **Streaming Data Source:** The data collection began by implementing the streaming Twitter API using Python. We also implemented the Google NLP API to understand and analyze the sentiment of the data being scraped. The script constantly ran on the cloud on an Amazon EMR instance.
+1. **Streaming Data Source:** The data collection began by implementing the streaming Twitter API using Python. We also implemented the TextBlob to understand and analyze the sentiment of the data being scraped. The script constantly ran on the cloud on an Amazon EMR instance.
+
+EMR Configuration
+
+![Configuration](https://github.umn.edu/singh899/trends-project-team2/blob/master/Diagrams/emr_config.PNG)
+
 2. **Streaming Pipeline:** The streaming data was sent to Amazon S3, for convenient data storage using Amazon Kinesis Firehose. Amazon Kinesis Firehose provided an easy way to send streaming data into Amazon Web Services (AWS) to enable near real-time analytics with existing business tools.
 3. **Data Storage and Processing:** The data stored on S3 was then batch processed using Apache Spark to ensure a scalable and reliable product for the clients of TwitterTalker. We used Spark to implement the majority of our analysis, e.g. calculate the influence score, etc. The data was processed every 15 minutes.
 4. **Database:** The final output from our analysis in Spark was sent to Amazon RDS as a SQL table and updated every 15 minutes as mentioned earlier. The Python Flask App called the database to display the real time data to the client interface.
 
 ## Code walkthrough
 Below are the details of key code components and their utility:
-1. **create_aws_pipeline:** This code creates the pipeline used to stream data and store it in S3. The data is captured every 300 seconds or once the data reaches 5MB size limit, whichever reaches first.
-2. **data_producer:** This is the main streaming component of the pipeline. The function on_data of class StreamListener specifies all the components from twitter data that will be streamed and stored on S3.
-3. **delete_kinesis_pipeline:** This snippet drops the kinesis pipeline used to stream data from twitter to S3
-4. **download_unzip_mysql_driver:** This shell script downloads and unzips the required MySQL driver.
-5. **run_analysis_updated:** This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is ten appended to a table in RDS with specified paramteres.
-6. **Execute code:** Run the below command to execute run analysis code. We can aslo schedule the code in a crontab file and run every hour or every day depending on our needs
+1. **create_aws_pipeline:** This python code is used to create Kinesis firehose pipeline based on the search term or tag we entered using boto3 library.
+2. **data_producer:** This python code reads streaming data from Twitter API using Tweepy and also uses Textblob for the sentiment analysis and then creates the Kinesis Firehose pipeline to consumer data and store it in S3. The data is captured every 300 seconds or once the data reaches 5MB size limit, whichever reaches first and then dumped to S3 bucket.
+3. **download_unzip_mysql_driver:** This shell script downloads and unzips the required MySQL driver. This driver was required to connect to mysql hosted on AWS RDS.
+4. **run_analysis_updated:** This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is then appended to a table in RDS with specified paramteres. We can also do feature engineering and model fitting steps here to further enhance our solution.
+5. **Execute code:** Run the below command to execute run analysis code. We can aslo schedule the code in a crontab file and run every hour or every day depending on our needs
 
 ```
 spark-submit --jars ~/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar run_analysis_updated.py
 ```
+
+6. **delete_kinesis_pipeline:** This snippet drops the kinesis pipeline created in the first step
 
 
 ## References
