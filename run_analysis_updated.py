@@ -22,8 +22,8 @@ from pyspark.sql.types import IntegerType
 
 
 #aws keys
-aws_key_id = 'AKIAJXYU3CZFP6Q2REEA'
-aws_key = '73MZpReD7KGqVlZu8SuNv9kPJdfos7KPBrAohMis'
+aws_key_id = 'XXXXXXXXXXXXXXXXXXXXXXXX'
+aws_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
 #day = date | awk '{print $3}'
 #hour = date | awk '{print $4}' | awk -F ":" '{print $1}'
@@ -32,7 +32,7 @@ def main():
     sc=SparkContext()
     sqlContext = SQLContext(sc)
     bucket = "trends-project-team2"
-    prefix = "2018/12/10/03/*/" #These parameters need to be changed dynamically depending on date and time. Use crontab to autocreate these values
+    prefix = "2018/12/*/*/*/" #These parameters need to be changed dynamically depending on date and time. Use crontab to autocreate these values
     filename = "s3a://{}/photooftheday/{}".format(bucket, prefix)
     print(filename)
 
