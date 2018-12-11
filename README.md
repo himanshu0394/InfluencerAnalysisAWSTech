@@ -41,6 +41,12 @@ EMR Configuration
 Below are the details of key code components and their utility:
 1. **create_aws_pipeline:** This python code is used to create Kinesis firehose pipeline based on the search term or tag we entered using boto3 library.
 2. **data_producer:** This python code reads streaming data from Twitter API using Tweepy and also uses Textblob for the sentiment analysis and then creates the Kinesis Firehose pipeline to consumer data and store it in S3. The data is captured every 300 seconds or once the data reaches 5MB size limit, whichever reaches first and then dumped to S3 bucket.
+
+Sample Output
+```
+{"rt_status_user_name": "Neil", "rt_status_user_friends_count": "140", "rt_status_created_at": "Sun Dec 09 21:20:06 +0000 2018", "rt_status_user_id": "1062071811066732544", "sentiment": "None", "status_id": "1071889854873657344", "rt_status_text": "A rare half hour zipping the drone about this evening before the rain kicked in again. #photooftheday #ThePhotoHour https://t.co/qGKP1lgepy", "rt_status_favorited": "False", "rt_status_retweeted": false, "rt_status_user_favourites_count": "354", "rt_status_user_screen_name": "MozMoz4000", "rt_status_user_profile_image": "http://pbs.twimg.com/profile_images/1062081627352907778/BoSB7NE5_normal.jpg", "status_created_at": "Sun Dec 09 22:10:30 +0000 2018", "rt_status_id": "1071877168978751488", "rt_status_user_statuses_count": "118", "searched_names": "photooftheday", "rt_status_user_followers_count": "68", "rt_status_favorite_count": "1", "rt_status_retweet_count": "1", "rt_status_user_location": "North West, England", "rt_status_user_listed_count": "0"}
+```
+
 3. **download_unzip_mysql_driver:** This shell script downloads and unzips the required MySQL driver. This driver was required to connect to mysql hosted on AWS RDS.
 4. **run_analysis_updated:** This code moves json data from S3 and stores it in a database on RDS by processing it and taking the relevant columns. It collects various columns such as number of followers, number of friends, total number of tweets and retweets and number of favourites. This data is then appended to a table in RDS with specified paramteres. We can also do feature engineering and model fitting steps here to further enhance our solution.
 5. **Execute code:** Run the below command to execute run analysis code. We can aslo schedule the code in a crontab file and run every hour or every day depending on our needs
