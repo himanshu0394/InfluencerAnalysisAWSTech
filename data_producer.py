@@ -4,7 +4,6 @@ from tweepy.streaming import StreamListener
 import time
 import numpy as np
 import pandas as pd
-#from google.cloud import language
 import json
 import boto3
 import os
@@ -13,18 +12,16 @@ import credentials
 import sys
 from textblob import TextBlob
 import re
-#from oauth2client.client import GoogleCredentials
-#google_credentials = GoogleCredentials.get_application_default()
 
 #Twitter Keys
-consumer_key = "QeXMWJlhYqJ4dmGXlCeWP9kjU"
-consumer_secret = "0v01w6unXdcB0rP2XevglTO2AN0ovdx6l3dn9ywsGQzu6U07pD"
-access_token = "1348875295-WBHsZsVQepjWBqZ9kW7X3UmmGWMIQhEEgGUV8aJ"
-access_token_secret = "Wpr8D27T9J8SOBI13BWMlzFmq3q1yjklqABbvCisboS9d"
+consumer_key = "XXXXXXXXXXXXXXXXXXXXX"
+consumer_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_token = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_token_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 #aws keys
-aws_key_id = "AKIAJXYU3CZFP6Q2REEA"
-aws_key = "73MZpReD7KGqVlZu8SuNv9kPJdfos7KPBrAohMis"
+aws_key_id = "XXXXXXXXXXXXXXXX"
+aws_key = "XXXXXXXXXXXXXXXXXXXX"
 
 
 def clean_tweet(tweet):
@@ -32,7 +29,6 @@ def clean_tweet(tweet):
 
 
 def sentimentAnalysis(tweet):
-    #client = language.Client()
     analysis= TextBlob(clean_tweet(tweet))
     if analysis.sentiment.polarity > 0:
         return 1
@@ -41,13 +37,7 @@ def sentimentAnalysis(tweet):
     else:
         return -1
 
-    #document =  client.document_from_text(text)
-    #sent_analysis = document.analyze_sentiment()
-    #print(dir(sent_analysis))
-    #sentiment = sent_analysis.sentiment
-    #return sentiment
-
-
+    
 class StreamListener(tweepy.StreamListener):
     def __init__(self, boto_client, search_list):
         super(tweepy.StreamListener, self).__init__()
@@ -87,11 +77,9 @@ class StreamListener(tweepy.StreamListener):
                 tw_data['rt_status_user_listed_count']= str(all_data['retweeted_status']['user']['listed_count'])
                 tw_data['rt_status_user_statuses_count']= str(all_data['retweeted_status']['user']['statuses_count'])
                 tw_data['searched_names'] =  self.search_list[0]
-                #try:
                 rt_sentiment = sentimentAnalysis(tw_data['rt_status_text'])
                 tw_data['sentiment']= rt_sentiment
-                #except:
-                #    tw_data['sentiment'] = 'None'
+                
 
                 try:
                     self.kinesis.put_record(DeliveryStreamName=self.search_list[0],
@@ -163,4 +151,3 @@ def main(search_name):
 
 if __name__ == '__main__':
     main(sys.argv[1:])
-
