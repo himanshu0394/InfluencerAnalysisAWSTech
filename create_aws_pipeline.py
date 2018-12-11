@@ -4,8 +4,8 @@ import credentials
 import sys
 from botocore.exceptions import ClientError
 
-aws_key_id = "AKIAJXYU3CZFP6Q2XXXX"
-aws_key = "73MZpReD7KGqVlZu8SuNv9kPJdfos7KPBrAoXXXX"
+aws_key_id = "XXXXXXXXXXXX"
+aws_key = "XXXXXXXXXXXXXXX"
 
 def create_stream(client, stream_name):
     return client.create_delivery_stream(DeliveryStreamName=stream_name ,S3DestinationConfiguration={'RoleARN': 'arn:aws:iam::406659499942:role/firehose_delivery_role','BucketARN': 'arn:aws:s3:::trends-project-team2','Prefix': stream_name+'/'})
