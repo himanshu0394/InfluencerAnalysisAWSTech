@@ -52,6 +52,9 @@ spark-submit --jars ~/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bi
 6. **delete_kinesis_pipeline:** This snippet drops the kinesis pipeline created in the first step
 
 
+## Final Dashboard
+https://public.tableau.com/profile/sidd.malik#!/vizhome/TopTwitter/Dashboard2
+
 ## References
 1. https://nycdatascience.com/blog/student-works/web-scraping/build-near-real-time-twitter-streaming-analytical-pipeline-scratch-using-spark-aws/
 2. https://nycdatascience.com/blog/student-works/creating-real-time-streaming-platform-identify-top-influencers-twitter/
