@@ -22,8 +22,8 @@ from pyspark.sql.types import IntegerType
 
 
 #aws keys
-aws_key_id = 'XXXXXXXXXXXXXXXXXXXXXXXX'
-aws_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX'
+# aws_key_id = ''
+# aws_key = ''
 
 #day = date | awk '{print $3}'
 #hour = date | awk '{print $4}' | awk -F ":" '{print $1}'
