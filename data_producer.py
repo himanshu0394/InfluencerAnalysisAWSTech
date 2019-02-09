@@ -14,14 +14,14 @@ from textblob import TextBlob
 import re
 
 #Twitter Keys
-consumer_key = "XXXXXXXXXXXXXXXXXXXXX"
-consumer_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-access_token = "XXXXXXXXXXXXXXXXXXXXXXXXXX"
-access_token_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+# consumer_key = ""
+# consumer_secret = ""
+# access_token = ""
+# access_token_secret = ""
 
 #aws keys
-aws_key_id = "XXXXXXXXXXXXXXXX"
-aws_key = "XXXXXXXXXXXXXXXXXXXX"
+# aws_key_id = ""
+# aws_key = ""
 
 
 def clean_tweet(tweet):
