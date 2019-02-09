@@ -5,8 +5,8 @@ import sys
 from botocore.exceptions import ClientError
 
 
-aws_key_id = "XXXXXXXXXXXXXXXXXX"
-aws_key = "XXXXXXXXXXXXXXXXXXXXXXXX"
+# aws_key_id = ""
+# aws_key = ""
 
 def delete_stream(client, stream_name):
    try:
